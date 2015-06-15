@@ -1,5 +1,6 @@
 FROM phusion/baseimage:0.9.16
 MAINTAINER Lime Technology <erics@lime-technology.com>
+#Based on the work of gfjardim <gfjardim@gmail.com>
 
 #########################################
 ##        ENVIRONMENTAL CONFIG         ##
