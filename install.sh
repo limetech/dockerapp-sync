@@ -31,8 +31,10 @@ cat <<'EOT' > /etc/service/btsync/run
 umask 000
 [[ ! -f /config/btsync.conf ]] && cp /tmp/btsync.conf /config/
 [[ ! -d /config/.sync ]] && mkdir -p /config/.sync
+[[ ! -f /config/.sync/debug.txt ]] && echo '0000' > /config/.sync/debug.txt
+[[ "$(stat -c %Y /config/.sync/debug.txt 2>/dev/null || echo 0)" -lt "1454620500" ]] && echo '0000' > /config/.sync/debug.txt
 chown -R nobody:users /opt/btsync /config
-exec /sbin/setuser nobody /opt/btsync/btsync --nodaemon --config "/config/btsync.conf"
+exec /sbin/setuser nobody /opt/btsync/btsync --nodaemon --log "/config/btsync.log" --config "/config/btsync.conf"
 EOT
 
 cat <<'EOT' > /tmp/btsync.conf
