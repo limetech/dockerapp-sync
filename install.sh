@@ -60,7 +60,7 @@ chmod -R +x /etc/service/ /etc/my_init.d/
 ##             INSTALLATION            ##
 #########################################
 
-# Install BTSync 2.3.8
+# Install BTSync 2.4.0
 mkdir -p /opt/btsync
 curl -s -k -L "https://download-cdn.getsync.com/stable/linux-x64/BitTorrent-Sync_x64.tar.gz" | tar -xzf - -C /opt/btsync
 
