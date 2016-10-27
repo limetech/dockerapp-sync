@@ -29,15 +29,15 @@ mkdir -p /etc/service/resilio
 cat <<'EOT' > /etc/service/resilio/run
 #!/bin/bash
 umask 000
-[[ ! -f /config/sync.conf ]] && cp /tmp/sync.conf /config/
+[[ ! -f /config/btsync.conf ]] && cp /tmp/btsync.conf /config/
 [[ ! -d /config/.sync ]] && mkdir -p /config/.sync
 [[ ! -f /config/.sync/debug.txt ]] && echo '0000' > /config/.sync/debug.txt
 [[ "$(stat -c %Y /config/.sync/debug.txt 2>/dev/null || echo 0)" -lt "1454620500" ]] && echo '0000' > /config/.sync/debug.txt
 chown -R nobody:users /opt/resilio /config
-exec /sbin/setuser nobody /opt/resilio/rslsync --nodaemon --log "/config/sync.log" --config "/config/sync.conf"
+exec /sbin/setuser nobody /opt/resilio/rslsync --nodaemon --log "/config/btsync.log" --config "/config/btsync.conf"
 EOT
 
-cat <<'EOT' > /tmp/sync.conf
+cat <<'EOT' > /tmp/btsync.conf
 {
   "device_name": "unRAID",
   "listening_port" : 5555,
