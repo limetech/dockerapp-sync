@@ -24,17 +24,17 @@ if [[ $(cat /etc/timezone) != $TZ ]] ; then
 fi
 EOT
 
-# btsync
-mkdir -p /etc/service/btsync
-cat <<'EOT' > /etc/service/btsync/run
+# resilio
+mkdir -p /etc/service/resilio
+cat <<'EOT' > /etc/service/resilio/run
 #!/bin/bash
 umask 000
 [[ ! -f /config/btsync.conf ]] && cp /tmp/btsync.conf /config/
 [[ ! -d /config/.sync ]] && mkdir -p /config/.sync
 [[ ! -f /config/.sync/debug.txt ]] && echo '0000' > /config/.sync/debug.txt
 [[ "$(stat -c %Y /config/.sync/debug.txt 2>/dev/null || echo 0)" -lt "1454620500" ]] && echo '0000' > /config/.sync/debug.txt
-chown -R nobody:users /opt/btsync /config
-exec /sbin/setuser nobody /opt/btsync/btsync --nodaemon --log "/config/btsync.log" --config "/config/btsync.conf"
+chown -R nobody:users /opt/resilio /config
+exec /sbin/setuser nobody /opt/resilio/rslsync --nodaemon --log "/config/btsync.log" --config "/config/btsync.conf"
 EOT
 
 cat <<'EOT' > /tmp/btsync.conf
@@ -60,9 +60,9 @@ chmod -R +x /etc/service/ /etc/my_init.d/
 ##             INSTALLATION            ##
 #########################################
 
-# Install BTSync 2.4.0
-mkdir -p /opt/btsync
-curl -s -k -L "https://download-cdn.getsync.com/stable/linux-x64/BitTorrent-Sync_x64.tar.gz" | tar -xzf - -C /opt/btsync
+# Install Resilio 2.4.1
+mkdir -p /opt/resilio
+curl -s -k -L "https://download-cdn.resilio.com/stable/linux-x64/resilio-sync_x64.tar.gz" | tar -xzf - -C /opt/resilio
 
 
 #########################################
