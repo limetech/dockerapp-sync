@@ -1,4 +1,4 @@
-FROM phusion/baseimage:0.9.18
+FROM phusion/baseimage:0.9.22
 MAINTAINER Lime Technology <erics@lime-technology.com>
 #Based on the work of gfjardim <gfjardim@gmail.com>
 
