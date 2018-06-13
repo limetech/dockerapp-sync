@@ -60,7 +60,7 @@ chmod -R +x /etc/service/ /etc/my_init.d/
 ##             INSTALLATION            ##
 #########################################
 
-# Install Resilio 2.5.12
+# Install Resilio 2.5.13
 mkdir -p /opt/resilio
 curl -s -k -L "https://download-cdn.resilio.com/stable/linux-x64/resilio-sync_x64.tar.gz" | tar -xzf - -C /opt/resilio
 
